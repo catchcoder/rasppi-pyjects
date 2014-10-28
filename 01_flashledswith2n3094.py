@@ -1,5 +1,5 @@
 # leds.py
-# flash eds vi 2n3904
+# flash leds vi NPN transistor like 2n3904
 
 import RPi.GPIO as GPIO
 import time
