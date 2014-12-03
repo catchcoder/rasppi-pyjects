@@ -29,11 +29,12 @@ while True:
 	if temp <> tempCelsius:
 		print ("Temperature %sc" % str(tempCelsius))
 		temp = tempCelsius
-		d = datetime.datetime.now().strftime("%H:%M:%S on %d-%m-%Y")
-		f = open("/var/www/temp.txt","w")
-		f.write (str(temp)+ "\n")
-		f.write (str(d))
+		d = datetime.datetime.now().strftime("%d-%m-%Y")
+		t = datetime.datetime.now().strftime("%H:%M:%S")
+		f = open("/var/www/temp.txt","a")
+		f.write (str(d) + " " + str(t) + " " + str(temp)+ "\n")
 		f.close()
+		time.sleep(1)
 
 	#print ('-----') 
         #print "raw temp=", rawTemp
