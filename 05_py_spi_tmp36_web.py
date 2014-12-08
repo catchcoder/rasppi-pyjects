@@ -20,21 +20,25 @@ def readadc(adcnum):
 # TMP36 temperature sensor connected to ADC input 0
 TempSensor = 0
 temp = 0
+f = open ("/home/pi/myweb/public/data.tsv","w")
+f.write ("date\tChannel 1\r\n")
+f.close()
+
 while True:
         rawTemp = readadc(TempSensor)
         # Convert the raw ADC input to milliVolts, degrees Celsius and Fahrenheit
         milliVolts = rawTemp * (3300.0 / 4096.0)
-        tempCelsius = int(((milliVolts - 100.0) / 10.0) - 40.0)
+        tempCelsius = float("{0:.1f}".format(((milliVolts - 100.0) / 10.0) - 40.0))
         #tempFahrenheit = (tempCelsius * 9.0 / 5.0 ) + 32
-	if temp <> tempCelsius:
-		print ("Temperature %sc" % str(tempCelsius))
-		temp = tempCelsius
-		d = datetime.datetime.now().strftime("%d-%m-%Y")
-		t = datetime.datetime.now().strftime("%H:%M:%S")
-		f = open("/var/www/temp.txt","a")
-		f.write (str(d) + " " + str(t) + " " + str(temp)+ "\n")
-		f.close()
-		time.sleep(1)
+	#if temp <> tempCelsius:
+		#print ("Temperature %sc" % str(tempCelsius))
+		#temp = tempCelsius
+	#d = datetime.datetime.now().strftime("%d-%m-%Y")
+	t = datetime.datetime.now().strftime("%H%M%S")
+	f = open("/home/pi/myweb/public/data.tsv","a")
+	f.write (str(t).strip()  + "\t" + str(tempCelsius)+ "\r\n")
+	f.close()
+		#time.sleep(1)
 
 	#print ('-----') 
         #print "raw temp=", rawTemp
@@ -42,4 +46,4 @@ while True:
 	#print "Celsius=", int(tempCelsius)
         #print "Fahrenheit=", int(tempFahrenheit)
  
-        time.sleep(0.1)
+        time.sleep(60)
