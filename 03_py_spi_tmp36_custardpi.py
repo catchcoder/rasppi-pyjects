@@ -17,7 +17,7 @@ def readadc(adcnum):
         return adcout
  
 # TMP36 temperature sensor connected to ADC input 0
-TempSensor = 0
+TempSensor = 1
  
 while True:
         rawTemp = readadc(TempSensor)
