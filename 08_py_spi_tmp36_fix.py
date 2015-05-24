@@ -40,7 +40,7 @@ while True:
         tempCelsius = float("{0:.1f}".format(((milliVolts - 100.0) / 10.0) - 40.0))
 	itempCelsius = int(tempCelsius)
       	t = datetime.datetime.now()
-	strDate =  str(t.day) +'-' + str(t.month) + '-' + str(t.year) + ' ' + str(t.hour) + str(t.minute) + str(t.second) 
+	strDate =  str(t.day).zfill(2) +'-' + str(t.month).zfill(2) + '-' + str(t.year) + ' ' + str(t.hour).zfill(2) + str(t.minute).zfill(2) + str(t.second).zfill(2) 
 	
 	f = open(datafile,"a")
 	f.write (strDate  + "\t" + str(itempCelsius)+ "\r\n")
